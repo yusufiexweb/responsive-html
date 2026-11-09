@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" data-theme="red">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NOVA333X // Cinematic Owl & Crow Matrix</title>
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- FontAwesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+--accent-color: #ff3333;
+--accent-glow: rgba(255, 51, 51, 0.4);
+--bg-base: #030305;
+--archival-border: rgba(255, 51, 51, 0.3);
+}
+
+[data-theme="purple"] {
+--accent-color: #a855f7;
+--accent-glow: rgba(168, 85, 247, 0.4);
+--archival-border: rgba(168, 85, 247, 0.3);
+}
+
+[data-theme="emerald"] {
+--accent-color: #10b981;
+--accent-glow: rgba(16, 185, 129, 0.4);
+--archival-border: rgba(16, 185, 129, 0.3);
+}
+
+[data-theme="blue"] {
+--accent-color: #3b82f6;
+--accent-glow: rgba(59, 130, 246, 0.4);
+--archival-border: rgba(59, 130, 246, 0.3);
+}
+
+body {
+font-family: 'Space Grotesk', sans-serif;
+background-color: var(--bg-base);
+color: #ededed;
+cursor: auto !important;
+min-width: 320px;
+overflow-x: clip;
+transition: background-color 0.4s ease;
+}
+
+.mono-text {
+font-family: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after {
+box-sizing: border-box;
+}
+
+html {
+scroll-padding-top: 88px;
+-webkit-text-size-adjust: 100%;
+text-size-adjust: 100%;
+}
+
+a, button, summary, [role="button"] {
+cursor: pointer;
+-webkit-tap-highlight-color: transparent;
+}
+
+input, textarea, select {
+cursor: text;
+}
+
+img, video, svg {
+max-width: 100%;
+}
+
+/* Archival Background Noise */
+.archival-noise {
+position: fixed;
+inset: 0;
+z-index: -1;
+background:
+radial-gradient(circle at 50% 50%, var(--accent-glow) 0%, transparent 65%),
+linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
+background-size: 100% 4px;
+pointer-events: none;
+}
+
+/* Cinematic Flying & Glowing Eyes Animation */
+@keyframes cinematicFly {
+0% {
+transform: scale(1.2) translateY(30px);
+opacity: 0;
+filter: blur(10px);
+}
+
+50% {
+opacity: 0.8;
+filter: blur(0);
+}
+
+100% {
+transform: scale(1) translateY(0);
+opacity: 0.55;
+}
+}
+
+.cinematic-bg-video {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+animation: cinematicFly 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+filter: contrast(130%) brightness(60%) saturate(120%);
+}
+
+/* Glowing Eyes Effect */
+@keyframes glowingEyes {
+0%, 100% {
+box-shadow: 0 0 5px var(--accent-color), 0 0 10px var(--accent-color);
+opacity: 0.8;
+}
+
+50% {
+box-shadow: 0 0 20px var(--accent-color), 0 0 35px var(--accent-color);
+opacity: 1;
+transform: scale(1.2);
+}
+}
+
+.glow-eye-1, .glow-eye-2 {
+position: absolute;
+width: 8px;
+height: 8px;
+background-color: #fff;
+border-radius: 50%;
+animation: glowingEyes 1.5s infinite ease-in-out;
+z-index: 5;
+}
+
+/* Dropdown Menus */
+.dropdown-menu {
+opacity: 0;
+pointer-events: none;
+transform: translateY(12px) skewX(-2deg);
+transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .dropdown-menu {
+opacity: 1;
+pointer-events: auto;
+transform: translateY(0) skewX(0deg);
+}
+
+/* Archival Cards */
+.archival-card {
+background: #08080c;
+border: 2px solid var(--archival-border);
+position: relative;
+transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.6);
+}
+
+.archival-card::before {
+content: attr(data-index);
+position: absolute;
+top: -12px;
+left: 16px;
+background: #030305;
+padding: 0 8px;
+font-family: 'JetBrains Mono', monospace;
+font-size: 10px;
+color: var(--accent-color);
+border: 1px solid var(--archival-border);
+}
+
+.archival-card:hover {
+transform: translate(-4px, -4px);
+border-color: var(--accent-color);
+box-shadow: 10px 10px 0 var(--accent-color);
+}
+
+.theme-btn {
+width: 14px;
+height: 14px;
+border-radius: 50%;
+cursor: pointer;
+transition: transform 0.2s;
+}
+
+.theme-btn:hover {
+transform: scale(1.3);
+}
+
+.modal-active {
+opacity: 1 !important;
+pointer-events: auto !important;
+}
+
+body.modal-open {
+overflow: hidden;
+}
+
+button, a, summary {
+-webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+width: 6px;
+}
+
+::-webkit-scrollbar-track {
+background: #030305;
+}
+
+::-webkit-scrollbar-thumb {
+background: var(--accent-color);
+}
+
+/* ================= RESPONSIVE / MOBILE / TABLET ================= */
+
+.site-header {
+min-height: 68px;
+padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
+}
+
+.desktop-header-actions {
+display: flex;
+}
+
+.mobile-header-controls {
+display: none;
+}
+
+.mobile-menu[hidden] {
+display: none !important;
+}
+
+#previewContainer {
+width: 100%;
+max-width: 375px;
+}
+
+.device-btn {
+min-height: 44px;
+}
+
+.device-btn.is-active {
+background: var(--accent-color) !important;
+color: #fff !important;
+border-color: var(--accent-color) !important;
+}
+
+#contactModal, #authModal {
+padding-top: max(12px, env(safe-area-inset-top, 0px));
+padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+overflow-y: auto;
+-webkit-overflow-scrolling: touch;
+overscroll-behavior: contain;
+}
+
+#contactModal > div, #authModal > div {
+max-height: calc(100vh - 24px);
+max-height: calc(
+100dvh - 24px -
+env(safe-area-inset-top, 0px) -
+env(safe-area-inset-bottom, 0px)
+);
+overflow-y: auto;
+-webkit-overflow-scrolling: touch;
+}
+
+#contactForm input,
+#contactForm textarea,
+#authModal input {
+width: 100%;
+min-width: 0;
+}
+
+@media (max-width: 1023px) {
+html {
+scroll-padding-top: 76px;
+}
+
+.site-header {
+min-height: 66px;
+padding-left: 16px;
+padding-right: 16px;
+gap: 12px;
+}
+
+.desktop-header-actions {
+display: none !important;
+}
+
+.mobile-header-controls {
+display: flex;
+align-items: center;
+}
+
+.mobile-menu-button {
+display: flex;
+width: 44px;
+height: 44px;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 5px;
+border: 1px solid rgba(255,255,255,.25);
+background: rgba(255,255,255,.05);
+color: #fff;
+}
+
+.mobile-menu-button span {
+width: 18px;
+height: 2px;
+background: currentColor;
+transition: transform .2s ease, opacity .2s ease;
+}
+
+.mobile-menu-button[aria-expanded="true"] span:first-child {
+transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-button[aria-expanded="true"] span:nth-child(2) {
+opacity: 0;
+}
+
+.mobile-menu-button[aria-expanded="true"] span:last-child {
+transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-menu:not([hidden]) {
+display: block;
+position: absolute;
+top: 100%;
+left: 0;
+right: 0;
+max-height: calc(
+100dvh - 72px -
+env(safe-area-inset-top, 0px)
+);
+overflow-y: auto;
+overscroll-behavior: contain;
+padding: 12px 16px max(18px, env(safe-area-inset-bottom, 0px));
+background: rgba(5,5,8,.98);
+border-bottom: 2px solid var(--accent-color);
+box-shadow: 0 20px 40px rgba(0,0,0,.55);
+-webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu-links {
+display: flex;
+flex-direction: column;
+}
+
+.mobile-menu-links > a,
+.mobile-menu-links summary {
+min-height: 48px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 8px;
+color: #e4e4e7;
+border-bottom: 1px solid rgba(255,255,255,.1);
+font: 700 12px/1.4 'JetBrains Mono', monospace;
+letter-spacing: .1em;
+text-transform: uppercase;
+list-style: none;
+}
+
+.mobile-menu-links summary::-webkit-details-marker {
+display: none;
+}
+
+.mobile-menu-links summary i {
+color: var(--accent-color);
+transition: transform .2s ease;
+}
+
+.mobile-menu-links details[open] summary i {
+transform: rotate(180deg);
+}
+
+.mobile-submenu {
+display: grid;
+gap: 2px;
+padding: 6px 0 10px 12px;
+border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.mobile-submenu a {
+display: block;
+min-height: 44px;
+padding: 12px 10px;
+color: #a1a1aa;
+font-size: 13px;
+}
+
+.mobile-menu-theme {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 18px 8px 10px;
+border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.mobile-menu-theme span {
+margin-right: auto;
+color: #a1a1aa;
+font: 10px 'JetBrains Mono', monospace;
+text-transform: uppercase;
+}
+
+.mobile-menu-actions {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+margin-top: 16px;
+}
+
+.mobile-menu-actions button {
+min-height: 46px;
+padding: 10px;
+border: 2px solid var(--accent-color);
+background: transparent;
+color: #fff;
+font: 700 10px 'JetBrains Mono', monospace;
+text-transform: uppercase;
+}
+
+.mobile-menu-actions button:last-child {
+background: var(--accent-color);
+}
+
+#hero-preview {
+padding-top: 112px !important;
+}
+
+#responsive-pipeline,
+#coding-approach {
+padding-top: 64px;
+padding-bottom: 64px;
+}
+
+#hero-preview h1 {
+font-size: clamp(2rem, 7vw, 3.75rem);
+line-height: 1.05;
+}
+
+.archival-card {
+min-width: 0;
+}
+}
+
+@media (max-width: 767px) {
+.site-header {
+min-height: 62px;
+padding-left: 12px;
+padding-right: 12px;
+}
+
+.site-header > a span {
+font-size: 17px;
+}
+
+.mobile-menu:not([hidden]) {
+max-height: calc(
+100dvh - 62px -
+env(safe-area-inset-top, 0px)
+);
+padding-left: 12px;
+padding-right: 12px;
+}
+
+#hero-preview {
+padding: 96px 14px 48px !important;
+}
+
+#hero-preview h1 {
+font-size: clamp(1.9rem, 9vw, 3rem);
+overflow-wrap: anywhere;
+}
+
+#hero-preview > p {
+font-size: 10px;
+line-height: 1.7;
+}
+
+.device-selector {
+display: grid !important;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+width: 100%;
+gap: 8px !important;
+padding: 10px !important;
+}
+
+.device-btn {
+justify-content: center;
+padding: 10px 7px !important;
+font-size: 9px !important;
+white-space: nowrap;
+}
+
+#previewContainer {
+width: 100%;
+max-width: 100% !important;
+padding: 12px !important;
+box-shadow: 5px 5px 0 var(--accent-color) !important;
+}
+
+#previewContainer > .flex:first-child {
+flex-wrap: wrap;
+gap: 8px;
+}
+
+#previewContainer > .flex:first-child > span:nth-child(2) {
+display: none;
+}
+
+#previewContainer .grid {
+gap: 8px;
+}
+
+#previewContainer .grid > div {
+min-height: 86px;
+height: auto;
+padding: 10px 4px;
+font-size: 9px;
+}
+
+#responsive-pipeline,
+#coding-approach {
+padding: 56px 14px;
+}
+
+#responsive-pipeline h2,
+#coding-approach h2 {
+font-size: clamp(1.8rem, 8vw, 2.6rem);
+line-height: 1.1;
+}
+
+#responsive-pipeline .border-l-4 {
+padding-left: 14px;
+}
+
+#coding-approach .grid {
+gap: 20px;
+}
+
+#coding-approach pre {
+max-width: 100%;
+font-size: 10px;
+}
+
+#coding-approach .lg\:col-span-7 {
+padding: 14px !important;
+box-shadow: 5px 5px 0 var(--accent-color) !important;
+}
+
+.archival-card {
+padding: 20px !important;
+}
+
+.archival-card:hover {
+transform: none;
+box-shadow: 6px 6px 0 rgba(0,0,0,.6);
+}
+
+footer {
+padding: 42px 16px !important;
+}
+
+footer > div {
+gap: 18px;
+}
+
+footer .flex.gap-6 {
+flex-wrap: wrap;
+gap: 14px;
+}
+
+#contactModal,
+#authModal {
+align-items: flex-start;
+padding: 12px;
+}
+
+#contactModal > div,
+#authModal > div {
+width: 100%;
+max-width: 100%;
+max-height: calc(
+100dvh - 24px -
+env(safe-area-inset-top, 0px) -
+env(safe-area-inset-bottom, 0px)
+);
+padding: 22px 16px;
+margin: auto 0;
+box-shadow: 6px 6px 0 var(--accent-color) !important;
+}
+
+#contactModal h3,
+#authModal h3 {
+font-size: 1.45rem;
+}
+
+#contactForm input,
+#contactForm textarea,
+#authModal input {
+font-size: 16px;
+min-height: 46px;
+}
+
+#contactForm textarea {
+min-height: 110px;
+}
+}
+
+@media (max-width: 380px) {
+.site-header > a span {
+font-size: 15px;
+}
+
+.mobile-menu-actions {
+grid-template-columns: 1fr;
+}
+
+.device-btn {
+font-size: 8px !important;
+gap: 5px !important;
+}
+
+#preloader .mono-text {
+font-size: 9px;
+letter-spacing: .08em;
+}
+
+#preloader .w-64 {
+width: min(64vw, 16rem);
+}
+}
+
+@media (hover: none), (pointer: coarse) {
+.archival-card:hover {
+transform: none;
+}
+
+.theme-btn:hover {
+transform: none;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+*,
+*::before,
+*::after {
+animation-duration: .01ms !important;
+transition-duration: .01ms !important;
+scroll-behavior: auto !important;
+}
+}
+</style>
+</head>
+
+<body class="selection:bg-red-600 selection:text-white">
+
+<div class="archival-noise"></div>
+
+<!-- ================= CINEMATIC 1s PRELOADER ================= -->
+
+<div id="preloader" class="fixed inset-0 bg-[#030305] z-[100000] flex flex-col justify-between p-8 md:p-16 transition-opacity duration-200 select-none overflow-hidden">
+
+<!-- Background Wildlife Video -->
+<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+<video autoplay muted loop playsinline class="cinematic-bg-video">
+<source src="https://assets.mixkit.co/videos/preview/mixkit-flying-crow-in-a-dark-sky-41584-large.mp4" type="video/mp4">
+</video>
+
+<div class="glow-eye-1" style="top: 38%; left: 48%;"></div>
+<div class="glow-eye-2" style="top: 38%; left: 51%;"></div>
+
+<div class="absolute inset-0 bg-gradient-to-t from-[#030305] via-black/40 to-[#030305]"></div>
+</div>
+
+<!-- Preloader Top Stats -->
+<div class="flex justify-between items-center mono-text text-xs text-[var(--accent-color)] uppercase tracking-widest border-b-2 border-[#222] pb-4 relative z-10">
+<span class="animate-pulse flex items-center gap-2">
+<i class="fa-solid fa-crow text-white"></i>
+[CINEMATIC WILDLIFE MATRIX: 1s]
+</span>
+
+<span>OWL &amp; CROW: ACTIVE</span>
+</div>
+
+<!-- Preloader Center Content -->
+<div class="my-auto relative z-10 text-center flex flex-col items-center justify-center">
+<h1 class="font-['Syne'] text-4xl sm:text-5xl md:text-6xl font-extrabold text-white uppercase tracking-tighter mb-4 drop-shadow-[0_0_35px_var(--accent-glow)]">
+NOVA<span class="text-[var(--accent-color)]">333</span>X
+</h1>
+
+<div class="mono-text text-3xl font-extrabold text-[var(--accent-color)] tracking-[0.2em] mb-4" id="preloaderCounter">
+00%
+</div>
+
+<div class="w-64 h-1.5 bg-[#111] border border-[#333] relative overflow-hidden rounded-full">
+<div id="preloaderBar" class="h-full bg-[var(--accent-color)] transition-all duration-75 shadow-[0_0_15px_var(--accent-color)]" style="width: 0%;"></div>
+</div>
+
+<p class="mono-text text-[10px] text-zinc-300 uppercase mt-4 tracking-widest" id="preloaderStatus">
+Cinematic Wildlife Loading...
+</p>
+</div>
+
+<!-- Preloader Bottom Bar -->
+<div class="flex justify-between items-end mono-text text-xs text-zinc-400 uppercase border-t-2 border-[#222] pt-4 relative z-10">
+<span>WILDLIFE RENDER: 4K FORMAT</span>
+<span class="text-white">EYES GLOW MATRIX</span>
+</div>
+</div>
+
+<!-- ================= RESPONSIVE NAVBAR ================= -->
+
+<header class="site-header fixed top-0 left-0 w-full z-50 bg-[#030305]/95 border-b-2 border-[#222] px-6 py-4 flex justify-between items-center backdrop-blur-md">
+
+<a href="#hero-preview" class="flex items-center gap-3 shrink-0">
+<span class="font-['Syne'] font-extrabold text-xl tracking-tighter text-white uppercase">
+NOVA333X<span class="text-[var(--accent-color)]">.</span>
+</span>
+</a>
+
+<!-- Desktop Navigation -->
+
+<div class="desktop-header-actions items-center gap-6 text-xs uppercase tracking-widest font-mono font-bold">
+
+<nav class="hidden lg:flex gap-6 text-zinc-400 items-center" aria-label="Main navigation">
+
+<a href="index.html" class="hover:text-white transition">
+Home
+</a>
+
+<!-- Services Dropdown Menu -->
+
+<div class="relative group py-2">
+<button type="button" class="hover:text-white transition flex items-center gap-1">
+Services
+<i class="fa-solid fa-chevron-down text-[9px]"></i>
+</button>
+
+<div class="dropdown-menu absolute top-full left-0 bg-[#08080c] border-2 border-[var(--accent-color)] p-4 w-56 shadow-[6px_6px_0px_var(--accent-color)] space-y-2">
+
+<a href="frontend.html" class="block text-zinc-300 hover:text-[var(--accent-color)] transition py-1">
+Frontend Architecture
+</a>
+
+<a href="responsive.html" class="block text-zinc-300 hover:text-[var(--accent-color)] transition py-1">
+Responsive Design
+</a>
+
+<a href="landing-pages.html" class="block text-zinc-300 hover:text-[var(--accent-color)] transition py-1">
+Landing Pages
+</a>
+
+<a href="e-commerce-websites.html" class="block text-white font-bold py-1 border-t border-zinc-800 pt-1 text-[var(--accent-color)]">
+E Commerce Web Site
+</a>
+</div>
+</div>
+
+<!-- Projects Dropdown Menu -->
+
+<div class="relative group py-2">
+<button type="button" class="text-white border-b-2 border-[var(--accent-color)] pb-0.5 transition flex items-center gap-1">
+Projects
+<i class="fa-solid fa-chevron-down text-[9px]"></i>
+</button>
+
+<div class="dropdown-menu absolute top-full left-0 bg-[#08080c] border-2 border-[var(--accent-color)] p-4 w-48 shadow-[6px_6px_0px_var(--accent-color)] space-y-2">
+
+<a href="all-projects.html" class="block text-white font-bold py-1">
+All Projects
+</a>
+
+<a href="case-studies.html" class="block text-zinc-300 hover:text-[var(--accent-color)] transition py-1">
+Case Studies
+</a>
+</div>
+</div>
+
+<a href="skills.html" class="hover:text-white transition">
+Skills
+</a>
+</nav>
+
+<div class="flex items-center gap-3">
+
+<!-- Desktop Theme Switcher -->
+
+<div class="flex items-center gap-1.5 px-3 py-1 bg-black border border-[#333] rounded-full mr-2">
+<button type="button" class="theme-btn bg-red-600" data-set-theme="red" title="Cyber Red" aria-label="Cyber Red"></button>
+<button type="button" class="theme-btn bg-purple-500" data-set-theme="purple" title="Neon Purple" aria-label="Neon Purple"></button>
+<button type="button" class="theme-btn bg-emerald-500" data-set-theme="emerald" title="Matrix Emerald" aria-label="Matrix Emerald"></button>
+<button type="button" class="theme-btn bg-blue-500" data-set-theme="blue" title="Electric Blue" aria-label="Electric Blue"></button>
+</div>
+
+<button type="button" id="openAuthModal" class="border-2 border-white hover:border-[var(--accent-color)] px-4 py-2 hover:bg-[var(--accent-color)] hover:text-white transition uppercase text-[11px]">
+Sign In / Register
+</button>
+
+<button type="button" id="openContactModal" class="bg-[var(--accent-color)] text-white border-2 border-[var(--accent-color)] px-5 py-2 hover:bg-white hover:text-black transition uppercase text-[11px] font-extrabold shadow-[4px_4px_0px_#fff]">
+Contact
+</button>
+</div>
+</div>
+
+<!-- Mobile / Tablet Menu Control -->
+
+<div class="mobile-header-controls">
+<button type="button" id="mobileMenuButton" class="mobile-menu-button" aria-label="Open navigation menu" aria-controls="mobileMenu" aria-expanded="false">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</div>
+
+<!-- Mobile / Tablet Navigation Panel -->
+
+<div id="mobileMenu" class="mobile-menu" hidden>
+
+<nav class="mobile-menu-links" aria-label="Mobile navigation">
+
+<a href="index.html">Home</a>
+
+<details>
+<summary>
+Services
+<i class="fa-solid fa-chevron-down"></i>
+</summary>
+
+<div class="mobile-submenu">
+<a href="frontend.html">Frontend Architecture</a>
+<a href="responsive.html">Responsive Design</a>
+<a href="landing-pages.html">Landing Pages</a>
+<a href="e-commerce-websites.html">E-Commerce Web Site</a>
+</div>
+</details>
+
+<details>
+<summary>
+Projects
+<i class="fa-solid fa-chevron-down"></i>
+</summary>
+
+<div class="mobile-submenu">
+<a href="all-projects.html">All Projects</a>
+<a href="case-studies.html">Case Studies</a>
+</div>
+</details>
+
+<a href="skills.html">Skills</a>
+</nav>
+
+<div class="mobile-menu-theme">
+<span>Theme color</span>
+
+<button type="button" class="theme-btn bg-red-600" data-set-theme="red" title="Cyber Red" aria-label="Cyber Red"></button>
+<button type="button" class="theme-btn bg-purple-500" data-set-theme="purple" title="Neon Purple" aria-label="Neon Purple"></button>
+<button type="button" class="theme-btn bg-emerald-500" data-set-theme="emerald" title="Matrix Emerald" aria-label="Matrix Emerald"></button>
+<button type="button" class="theme-btn bg-blue-500" data-set-theme="blue" title="Electric Blue" aria-label="Electric Blue"></button>
+</div>
+
+<div class="mobile-menu-actions">
+<button type="button" id="mobileOpenAuthModal">
+Sign In / Register
+</button>
+
+<button type="button" id="mobileOpenContactModal">
+Contact
+</button>
+</div>
+</div>
+</header>
+
+<!-- ================= SECTION 1: RESPONSIVE INTERACTIVE PREVIEW ================= -->
+
+<section id="hero-preview" class="pt-36 pb-16 px-6 max-w-7xl mx-auto text-center">
+
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-black border border-[var(--accent-color)] text-[var(--accent-color)] mono-text text-[10px] uppercase tracking-widest mb-4">
+<i class="fa-solid fa-code"></i>
+FLEXIBLE LAYOUT ENGINE
+</div>
+
+<h1 class="font-['Syne'] text-4xl sm:text-6xl font-extrabold uppercase tracking-tight text-white mb-6">
+Flawless Adaptive
+<span class="text-[var(--accent-color)]">Engine</span>
+</h1>
+
+<p class="mono-text text-xs text-zinc-400 max-w-xl mx-auto uppercase mb-10">
+Pixel-perfect precision, dynamic scaling, and flawless visual balance across all screens.
+</p>
+
+<!-- Device Selector Bar -->
+
+<div class="device-selector inline-flex flex-wrap justify-center gap-3 bg-black border-2 border-[#222] p-3 shadow-[6px_6px_0px_#111] mb-8">
+
+<button type="button" class="device-btn is-active px-4 py-2 mono-text text-xs uppercase font-bold border-2 transition cursor-pointer flex items-center gap-2 bg-[var(--accent-color)] text-white border-[var(--accent-color)]" data-width="375px">
+<i class="fa-solid fa-mobile-screen"></i>
+Mobile (375px)
+</button>
+
+<button type="button" class="device-btn px-4 py-2 mono-text text-xs uppercase font-bold border-2 border-zinc-800 text-zinc-400 hover:border-[var(--accent-color)] transition cursor-pointer flex items-center gap-2" data-width="768px">
+<i class="fa-solid fa-tablet-screen-button"></i>
+Tablet (768px)
+</button>
+
+<button type="button" class="device-btn px-4 py-2 mono-text text-xs uppercase font-bold border-2 border-zinc-800 text-zinc-400 hover:border-[var(--accent-color)] transition cursor-pointer flex items-center gap-2" data-width="1024px">
+<i class="fa-solid fa-laptop"></i>
+Laptop (1024px)
+</button>
+
+<button type="button" class="device-btn px-4 py-2 mono-text text-xs uppercase font-bold border-2 border-zinc-800 text-zinc-400 hover:border-[var(--accent-color)] transition cursor-pointer flex items-center gap-2" data-width="100%">
+<i class="fa-solid fa-desktop"></i>
+Full Width
+</button>
+</div>
+
+<!-- Interactive Screen Preview Frame -->
+
+<div id="previewContainer" class="w-full max-w-4xl mx-auto bg-[#08080c] border-2 border-[var(--accent-color)] p-6 shadow-[12px_12px_0px_var(--accent-color)] transition-all duration-300">
+
+<div class="flex justify-between items-center mono-text text-[10px] text-zinc-500 border-b border-[#222] pb-3 mb-4">
+
+<div class="flex gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+</div>
+
+<span class="text-[var(--accent-color)]">
+https://nova333x.dev/responsive-preview
+</span>
+
+<span id="widthIndicator" class="text-white font-bold">
+Width: 375px
+</span>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
+<div class="h-32 bg-black border border-[#222] flex items-center justify-center text-zinc-500 mono-text text-xs">
+VIEWPORT_MOBILE
+</div>
+
+<div class="h-32 bg-black border border-[var(--accent-color)]/50 flex items-center justify-center text-[var(--accent-color)] mono-text text-xs animate-pulse">
+FLUID_TABLET
+</div>
+
+<div class="h-32 bg-black border border-[#222] flex items-center justify-center text-zinc-500 mono-text text-xs">
+VIEWPORT_DESKTOP
+</div>
+</div>
+</div>
+</section>
+
+<!-- ================= SECTION 2: RESPONSIVE WORK PROCESS & PIPELINE ================= -->
+
+<section id="responsive-pipeline" class="py-20 px-6 max-w-7xl mx-auto border-t-2 border-[#222]">
+
+<div class="border-l-4 border-[var(--accent-color)] pl-6 mb-12">
+
+<span class="mono-text text-xs text-[var(--accent-color)] uppercase tracking-[0.3em] block mb-2">
+// INFORMATIONAL ARCHITECTURE
+</span>
+
+<h2 class="font-['Syne'] text-4xl sm:text-6xl font-extrabold uppercase tracking-tight text-white">
+How I Build
+<span class="text-[var(--accent-color)]">Responsive UIs</span>
+</h2>
+
+<p class="mono-text text-xs text-zinc-400 mt-2 max-w-2xl">
+A structured breakdown of modern frontend engineering methodologies used to deliver zero-bloat, adaptively fluid websites across every screen size.
+</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+<div class="archival-card p-6" data-index="PHASE_01">
+<div class="mono-text text-xs text-[var(--accent-color)] font-bold mb-2">
+MOBILE-FIRST WORKFLOW
+</div>
+
+<h3 class="font-['Syne'] text-xl font-bold uppercase text-white mb-3">
+Resource &amp; Touch Priority
+</h3>
+
+<p class="font-mono text-xs text-zinc-400 leading-relaxed mb-4">
+Prioritizing minimal DOM tree structures, lightweight asset loading, and ergonomic touch targets (min 44px) before scaling up to desktop views.
+</p>
+
+<div class="mono-text text-[10px] text-zinc-500 border-t border-[#222] pt-2">
+TARGET: 320px - 480px
+</div>
+</div>
+
+<div class="archival-card p-6" data-index="PHASE_02">
+<div class="mono-text text-xs text-[var(--accent-color)] font-bold mb-2">
+DYNAMIC SCALING
+</div>
+
+<h3 class="font-['Syne'] text-xl font-bold uppercase text-white mb-3">
+Fluid Clamp Typography
+</h3>
+
+<p class="font-mono text-xs text-zinc-400 leading-relaxed mb-4">
+Replacing static pixel values with mathematical CSS <code class="text-[var(--accent-color)]">clamp(min, val, max)</code> for seamless typography and spacing scaling without layout shifts.
+</p>
+
+<div class="mono-text text-[10px] text-zinc-500 border-t border-[#222] pt-2">
+METHOD: CSS MATH FUNCTIONS
+</div>
+</div>
+
+<div class="archival-card p-6" data-index="PHASE_03">
+<div class="mono-text text-xs text-[var(--accent-color)] font-bold mb-2">
+BREAKPOINT ARCHITECTURE
+</div>
+
+<h3 class="font-['Syne'] text-xl font-bold uppercase text-white mb-3">
+CSS Grid Auto-Fit
+</h3>
+
+<p class="font-mono text-xs text-zinc-400 leading-relaxed mb-4">
+Utilizing native CSS Grid <code class="text-[var(--accent-color)]">repeat(auto-fit, minmax())</code> to create auto-arranging, responsive layouts with minimal media query overhead.
+</p>
+
+<div class="mono-text text-[10px] text-zinc-500 border-t border-[#222] pt-2">
+LAYOUT: ZERO-MEDIA-QUERY GRID
+</div>
+</div>
+
+<div class="archival-card p-6" data-index="PHASE_04">
+<div class="mono-text text-xs text-[var(--accent-color)] font-bold mb-2">
+HIGH-DPI OPTIMIZATION
+</div>
+
+<h3 class="font-['Syne'] text-xl font-bold uppercase text-white mb-3">
+Retina &amp; 4K Sharpness
+</h3>
+
+<p class="font-mono text-xs text-zinc-400 leading-relaxed mb-4">
+Guaranteeing maximum visual clarity on high-density displays (Apple Retina, 4K Monitors) through SVG vector graphics and hardware GPU rendering.
+</p>
+
+<div class="mono-text text-[10px] text-zinc-500 border-t border-[#222] pt-2">
+TESTING: 1025px - 4K+
+</div>
+</div>
+</div>
+</section>
+
+<!-- ================= SECTION 3: MODERN CODING APPROACH ================= -->
+
+<section id="coding-approach" class="py-20 px-6 max-w-7xl mx-auto border-t-2 border-[#222]">
+
+<div class="text-center mb-12">
+
+<span class="mono-text text-xs text-[var(--accent-color)] uppercase tracking-widest">
+// TECHNOLOGIES &amp; METHODOLOGY
+</span>
+
+<h2 class="font-['Syne'] text-4xl sm:text-5xl font-extrabold uppercase text-white mt-2">
+Modern Coding Approach
+</h2>
+
+<p class="mono-text text-xs text-zinc-400 max-w-xl mx-auto mt-2">
+Leveraging modern CSS functions instead of legacy methods to ensure maximum adaptability with minimal code footprint.
+</p>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+<div class="lg:col-span-5 space-y-6">
+
+<div class="bg-[#08080c] border-2 border-[#222] p-6 hover:border-[var(--accent-color)] transition shadow-[6px_6px_0px_#111]">
+<div class="flex items-center gap-3 mb-2">
+<i class="fa-solid fa-layer-group text-[var(--accent-color)] text-xl"></i>
+<h4 class="font-['Syne'] text-lg font-bold text-white uppercase">
+CSS Grid &amp; Flexbox Matrix
+</h4>
+</div>
+
+<p class="font-mono text-xs text-zinc-400 leading-relaxed">
+Two-dimensional and one-dimensional flexible layout systems to effortlessly manage complex interfaces without JS dependencies.
+</p>
+</div>
+
+<div class="bg-[#08080c] border-2 border-[#222] p-6 hover:border-[var(--accent-color)] transition shadow-[6px_6px_0px_#111]">
+<div class="flex items-center gap-3 mb-2">
+<i class="fa-solid fa-expand text-[var(--accent-color)] text-xl"></i>
+<h4 class="font-['Syne'] text-lg font-bold text-white uppercase">
+Fluid Container Queries
+</h4>
+</div>
+
+<p class="font-mono text-xs text-zinc-400 leading-relaxed">
+Elements adapting their design based on their parent container's size rather than the entire viewport for micro-component flexibility.
+</p>
+</div>
+
+<div class="bg-[#08080c] border-2 border-[#222] p-6 hover:border-[var(--accent-color)] transition shadow-[6px_6px_0px_#111]">
+<div class="flex items-center gap-3 mb-2">
+<i class="fa-solid fa-bolt text-[var(--accent-color)] text-xl"></i>
+<h4 class="font-['Syne'] text-lg font-bold text-white uppercase">
+Hardware GPU Acceleration
+</h4>
+</div>
+
+<p class="font-mono text-xs text-zinc-400 leading-relaxed">
+Leveraging CSS <code class="text-white">will-change</code> and composite layer rendering for silky 60 FPS scroll animations.
+</p>
+</div>
+</div>
+
+<div class="lg:col-span-7 bg-black border-2 border-[var(--accent-color)] p-6 shadow-[12px_12px_0px_var(--accent-color)]">
+
+<div class="flex justify-between items-center mono-text text-xs text-zinc-400 border-b border-[#222] pb-3 mb-4">
+<span class="text-[var(--accent-color)] flex items-center gap-2">
+<i class="fa-solid fa-file-code"></i>
+responsive-fluid-matrix.css
+</span>
+
+<span>CSS3 MODULE</span>
+</div>
+
+<pre class="mono-text text-xs text-zinc-300 overflow-x-auto p-4 bg-[#08080c] border border-[#222] leading-relaxed"><code>/* Dynamic Fluid Clamp Typography &amp; Spacing */
+:root {
+--fs-title: clamp(2rem, 5vw + 1rem, 4.5rem);
+--fs-body: clamp(0.85rem, 1vw + 0.5rem, 1.15rem);
+--gap-matrix: clamp(1rem, 3vw, 2.5rem);
+}
+
+/* Zero-Media-Query Auto-Fit Grid */
+.modern-archival-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: var(--gap-matrix);
+will-change: transform;
+}</code></pre>
+
+<div class="mt-4 pt-4 border-t border-[#222] flex justify-between items-center mono-text text-[10px] text-zinc-500">
+<span>SYNTAX: VANILLA CSS3</span>
+<span class="text-green-400 font-bold">✓ 100% COMPATIBLE</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="border-t-4 border-[#222] bg-[#0c0c0c] py-16 px-6">
+
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center text-xs mono-text text-zinc-400 gap-6">
+
+<div>
+<h4 class="font-['Syne'] text-lg font-bold text-white uppercase mb-1">
+NOVA333X<span class="text-[var(--accent-color)]">.</span>
+</h4>
+
+<p>
+Cinematic Wildlife Responsive Matrix &amp; Studio.
+</p>
+</div>
+
+<div class="flex gap-6 font-bold">
+<a href="https://github.com/yusufiexweb" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-color)] transition">
+GITHUB
+</a>
+
+<a href="https://www.upwork.com" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-color)] transition">
+UPWORK
+</a>
+
+<a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-color)] transition">
+LINKEDIN
+</a>
+</div>
+
+<div>
+&copy; 2026 NOVA333X. ALL RIGHTS RESERVED.
+</div>
+</div>
+</footer>
+
+<!-- ================= CONTACT MODAL ================= -->
+
+<div id="contactModal" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[100001] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+
+<div class="bg-[#0c0c0c] border-4 border-[var(--accent-color)] w-full max-w-lg p-8 relative shadow-[12px_12px_0px_var(--accent-color)] my-auto">
+
+<button type="button" id="closeContactModal" class="absolute top-4 right-4 w-8 h-8 bg-white text-black font-extrabold flex items-center justify-center hover:bg-[var(--accent-color)] hover:text-white transition">
+&times;
+</button>
+
+<div class="mb-6">
+<h3 class="font-['Syne'] text-3xl font-bold uppercase text-white mb-1">
+Contact Me
+</h3>
+
+<p class="text-xs text-zinc-400 font-mono">
+Send a direct cinematic inquiry.
+</p>
+</div>
+
+<form id="contactForm" class="space-y-4 font-mono text-xs">
+
+<div>
+<label class="text-zinc-400 uppercase block mb-1">
+Your Name
+</label>
+
+<input type="text" required placeholder="John Doe" class="w-full bg-black border-2 border-zinc-700 p-3 text-white focus:border-[var(--accent-color)] focus:outline-none">
+</div>
+
+<div>
+<label class="text-zinc-400 uppercase block mb-1">
+Email Address
+</label>
+
+<input type="email" required placeholder="name@domain.com" class="w-full bg-black border-2 border-zinc-700 p-3 text-white focus:border-[var(--accent-color)] focus:outline-none">
+</div>
+
+<div>
+<label class="text-zinc-400 uppercase block mb-1">
+Your Message
+</label>
+
+<textarea rows="4" required placeholder="Project details..." class="w-full bg-black border-2 border-zinc-700 p-3 text-white focus:border-[var(--accent-color)] focus:outline-none"></textarea>
+</div>
+
+<button type="submit" class="w-full bg-[var(--accent-color)] text-white p-4 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition shadow-[4px_4px_0px_#fff]">
+Send Inquiry
+</button>
+</form>
+</div>
+</div>
+
+<!-- ================= AUTH MODAL ================= -->
+
+<div id="authModal" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[100001] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+
+<div class="bg-[#0c0c0c] border-4 border-[var(--accent-color)] w-full max-w-md p-8 relative shadow-[12px_12px_0px_var(--accent-color)] my-auto">
+
+<button type="button" id="closeAuthModal" class="absolute top-4 right-4 w-8 h-8 bg-white text-black font-extrabold flex items-center justify-center hover:bg-[var(--accent-color)] hover:text-white transition">
+&times;
+</button>
+
+<div class="text-center mb-6">
+<h3 class="font-['Syne'] text-2xl font-bold uppercase text-white">
+STUDIO PORTAL
+</h3>
+
+<p class="mono-text text-[10px] text-[var(--accent-color)] tracking-widest mt-1">
+BRUTALIST ACCESS &amp; VERIFICATION
+</p>
+</div>
+
+<div class="flex border-b-2 border-zinc-800 mb-6 mono-text text-xs text-center">
+
+<button type="button" id="tabSignIn" class="w-1/2 pb-3 border-b-4 border-[var(--accent-color)] text-white font-bold">
+SIGN IN
+</button>
+
+<button type="button" id="tabSignUp" class="w-1/2 pb-3 border-b-4 border-transparent text-zinc-500 hover:text-zinc-300">
+REGISTER
+</button>
+</div>
+
+<form id="signInForm" class="space-y-4 font-mono text-xs">
+
+<div>
+<label class="text-zinc-400 uppercase block mb-1">
+Email
+</label>
+
+<input type="email" required placeholder="client@studio.com" class="w-full bg-black border-2 border-zinc-700 p-3 text-white focus:border-[var(--accent-color)] focus:outline-none">
+</div>
+
+<div>
+<label class="text-zinc-400 uppercase block mb-1">
+Password
+</label>
+
+<input type="password" required placeholder="••••••••" class="w-full bg-black border-2 border-zinc-700 p-3 text-white focus:border-[var(--accent-color)] focus:outline-none">
+</div>
+
+<button type="submit" class="w-full bg-[var(--accent-color)] text-white p-3 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition shadow-[4px_4px_0px_#fff]">
+Access Account
+</button>
+</form>
+
+<form id="signUpForm" class="space-y-4 font-mono text-xs hidden">
+
+<div>
+<label class="text-zinc-400 uppercase block mb-1">
+Full Name
+</label>
+
+<input type="text" required placeholder="John Doe" class="w-full bg-black border-2 border-zinc-700 p-3 text-white focus:border-[var(--accent-color)] focus:outline-none">
+</div>
+
+<div>
+<label class="text-zinc-400 uppercase block mb-1">
+Email Address
+</label>
+
+<input type="email" required placeholder="user@domain.com" class="w-full bg-black border-2 border-zinc-700 p-3 text-white focus:border-[var(--accent-color)] focus:outline-none">
+</div>
+
+<div>
+<label class="text-zinc-400 uppercase block mb-1">
+Password
+</label>
+
+<input type="password" required placeholder="••••••••" class="w-full bg-black border-2 border-zinc-700 p-3 text-white focus:border-[var(--accent-color)] focus:outline-none">
+</div>
+
+<button type="submit" class="w-full bg-[var(--accent-color)] text-white p-3 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition shadow-[4px_4px_0px_#fff]">
+Register Account
+</button>
+</form>
+</div>
+</div>
+
+<!-- ================= JAVASCRIPT LOGIC ================= -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+// Mobile / Tablet Navigation
+
+const mobileMenuButton = document.getElementById("mobileMenuButton");
+const mobileMenu = document.getElementById("mobileMenu");
+
+function closeMobileMenu() {
+if (!mobileMenu || !mobileMenuButton) return;
+
+mobileMenu.hidden = true;
+
+mobileMenuButton.setAttribute("aria-expanded", "false");
+mobileMenuButton.setAttribute("aria-label", "Open navigation menu");
+}
+
+function openMobileMenu() {
+if (!mobileMenu || !mobileMenuButton) return;
+
+mobileMenu.hidden = false;
+
+mobileMenuButton.setAttribute("aria-expanded", "true");
+mobileMenuButton.setAttribute("aria-label", "Close navigation menu");
+}
+
+if (mobileMenuButton && mobileMenu) {
+
+mobileMenuButton.addEventListener("click", () => {
+const isOpen =
+mobileMenuButton.getAttribute("aria-expanded") === "true";
+
+if (isOpen) closeMobileMenu();
+else openMobileMenu();
+});
+
+mobileMenu.querySelectorAll("a").forEach(link => {
+link.addEventListener("click", closeMobileMenu);
+});
+
+document.addEventListener("click", event => {
+if (
+!mobileMenu.hidden &&
+!mobileMenu.contains(event.target) &&
+!mobileMenuButton.contains(event.target)
+) {
+closeMobileMenu();
+}
+});
+
+window.addEventListener("resize", () => {
+if (window.innerWidth >= 1024) closeMobileMenu();
+}, { passive: true });
+
+document.addEventListener("keydown", event => {
+if (event.key === "Escape") closeMobileMenu();
+});
+}
+
+// ================= 1s CINEMATIC PRELOADER LOGIC =================
+
+const preloader = document.getElementById("preloader");
+const preloaderCounter = document.getElementById("preloaderCounter");
+const preloaderBar = document.getElementById("preloaderBar");
+const preloaderStatus = document.getElementById("preloaderStatus");
+
+if (preloader && preloaderCounter && preloaderBar && preloaderStatus) {
+
+const progressDuration = 750;
+const fadeDuration = 250;
+const startedAt = performance.now();
+const intervalTime = 15;
+
+const counterInterval = window.setInterval(() => {
+
+const elapsed = performance.now() - startedAt;
+const progress = Math.min(elapsed / progressDuration, 1);
+const rounded = Math.floor(progress * 100);
+
+preloaderCounter.textContent = rounded + "%";
+preloaderBar.style.width = rounded + "%";
+
+if (rounded > 80) {
+preloaderStatus.textContent = "Eyes Glowing & Unveiling...";
+} else if (rounded > 45) {
+preloaderStatus.textContent = "Wildlife Video Flying In...";
+} else {
+preloaderStatus.textContent = "Cinematic Sequence Loading...";
+}
+
+if (progress >= 1) {
+
+window.clearInterval(counterInterval);
+
+preloaderCounter.textContent = "100%";
+preloaderBar.style.width = "100%";
+preloaderStatus.textContent = "CINEMATIC SEQUENCE COMPLETE.";
+
+preloader.style.opacity = "0";
+
+window.setTimeout(() => {
+preloader.style.display = "none";
+}, fadeDuration);
+}
+
+}, intervalTime);
+}
+
+// Live Theme Switcher Logic
+
+const themeBtns = document.querySelectorAll("[data-set-theme]");
+
+themeBtns.forEach(btn => {
+btn.addEventListener("click", () => {
+const theme = btn.getAttribute("data-set-theme");
+
+if (theme) {
+document.documentElement.setAttribute("data-theme", theme);
+}
+});
+});
+
+// Device Selector Logic
+
+const deviceBtns = document.querySelectorAll(".device-btn");
+const previewContainer = document.getElementById("previewContainer");
+const widthIndicator = document.getElementById("widthIndicator");
+
+deviceBtns.forEach(btn => {
+btn.addEventListener("click", () => {
+
+deviceBtns.forEach(button => {
+button.classList.remove(
+"is-active",
+"bg-[var(--accent-color)]",
+"text-white",
+"border-[var(--accent-color)]"
+);
+
+button.classList.add("border-zinc-800", "text-zinc-400");
+});
+
+btn.classList.add("is-active");
+btn.classList.remove("border-zinc-800", "text-zinc-400");
+
+const width = btn.getAttribute("data-width");
+
+if (previewContainer && width) {
+previewContainer.style.maxWidth = width;
+}
+
+if (widthIndicator && width) {
+widthIndicator.textContent = "Width: " + width;
+}
+});
+});
+
+// Modals Logic
+
+const contactModal = document.getElementById("contactModal");
+const authModal = document.getElementById("authModal");
+
+function openModal(modal) {
+if (!modal) return;
+
+modal.classList.add("modal-active");
+document.body.classList.add("modal-open");
+
+closeMobileMenu();
+}
+
+function closeModal(modal) {
+if (!modal) return;
+
+modal.classList.remove("modal-active");
+
+if (!document.querySelector(".modal-active")) {
+document.body.classList.remove("modal-open");
+}
+}
+
+document.getElementById("openContactModal")?.addEventListener("click", () => {
+openModal(contactModal);
+});
+
+document.getElementById("mobileOpenContactModal")?.addEventListener("click", () => {
+openModal(contactModal);
+});
+
+document.getElementById("closeContactModal")?.addEventListener("click", () => {
+closeModal(contactModal);
+});
+
+document.getElementById("openAuthModal")?.addEventListener("click", () => {
+openModal(authModal);
+});
+
+document.getElementById("mobileOpenAuthModal")?.addEventListener("click", () => {
+openModal(authModal);
+});
+
+document.getElementById("closeAuthModal")?.addEventListener("click", () => {
+closeModal(authModal);
+});
+
+[contactModal, authModal].forEach(modal => {
+modal?.addEventListener("click", event => {
+if (event.target === modal) {
+closeModal(modal);
+}
+});
+});
+
+document.addEventListener("keydown", event => {
+if (event.key === "Escape") {
+closeModal(contactModal);
+closeModal(authModal);
+}
+});
+
+const tabSignIn = document.getElementById("tabSignIn");
+const tabSignUp = document.getElementById("tabSignUp");
+const signInForm = document.getElementById("signInForm");
+const signUpForm = document.getElementById("signUpForm");
+
+tabSignIn?.addEventListener("click", () => {
+
+if (!tabSignUp || !signInForm || !signUpForm) return;
+
+tabSignIn.className =
+"w-1/2 pb-3 border-b-4 border-[var(--accent-color)] text-white font-bold cursor-pointer";
+
+tabSignUp.className =
+"w-1/2 pb-3 border-b-4 border-transparent text-zinc-500 hover:text-zinc-300 cursor-pointer";
+
+signInForm.classList.remove("hidden");
+signUpForm.classList.add("hidden");
+});
+
+tabSignUp?.addEventListener("click", () => {
+
+if (!tabSignIn || !signInForm || !signUpForm) return;
+
+tabSignUp.className =
+"w-1/2 pb-3 border-b-4 border-[var(--accent-color)] text-white font-bold cursor-pointer";
+
+tabSignIn.className =
+"w-1/2 pb-3 border-b-4 border-transparent text-zinc-500 hover:text-zinc-300 cursor-pointer";
+
+signUpForm.classList.remove("hidden");
+signInForm.classList.add("hidden");
+});
+});
+</script>
+
+</body>
+</html>
